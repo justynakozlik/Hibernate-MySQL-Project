@@ -1,9 +1,9 @@
-package sample.entity;
+package oneToOne.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "student_example")
+@Table(name = "student")
 public class Student {
 
     @Id
@@ -20,7 +20,18 @@ public class Student {
     @Column(name = "age")
     private Integer age;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_student_index")
+    private StudentIndex studentIndex;
+
     public Student(){}
+
+    public Student(String firstName, String lastName, Integer age, StudentIndex studentIndex) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.studentIndex = studentIndex;
+    }
 
     public Integer getIdStudent() {
         return idStudent;
@@ -54,6 +65,14 @@ public class Student {
         this.age = age;
     }
 
+    public StudentIndex getStudentIndex() {
+        return studentIndex;
+    }
+
+    public void setStudentIndex(StudentIndex studentIndex) {
+        this.studentIndex = studentIndex;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -61,6 +80,7 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", studentIndex=" + studentIndex +
                 '}';
     }
 }
