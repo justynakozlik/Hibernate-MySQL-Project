@@ -26,11 +26,10 @@ public class Student {
 
     public Student(){}
 
-    public Student(String firstName, String lastName, Integer age, StudentIndex studentIndex) {
+    public Student(String firstName, String lastName, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.studentIndex = studentIndex;
     }
 
     public Integer getIdStudent() {
