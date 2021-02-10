@@ -1,6 +1,7 @@
 package oneToMany.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,9 @@ public class Department {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "field_of_study_number")
     private Integer fieldOfStudyNumber;
 
@@ -24,8 +28,9 @@ public class Department {
     public Department() {
     }
 
-    public Department(String city, Integer fieldOfStudyNumber) {
+    public Department(String city, String name, Integer fieldOfStudyNumber) {
         this.city = city;
+        this.name = name;
         this.fieldOfStudyNumber = fieldOfStudyNumber;
     }
 
@@ -61,11 +66,29 @@ public class Department {
         this.fieldsOfStudy = fieldsOfStudy;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void addFieldOfStudy(FieldOfStudy fieldOfStudy) {
+        if (fieldsOfStudy == null) {
+            fieldsOfStudy = new HashSet<FieldOfStudy>();
+        }
+
+        fieldsOfStudy.add(fieldOfStudy);
+        fieldOfStudy.setDepartment(this);
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "idDepartment=" + idDepartment +
                 ", city='" + city + '\'' +
+                ", name='" + name + '\'' +
                 ", fieldOfStudyNumber=" + fieldOfStudyNumber +
                 ", fieldsOfStudy=" + fieldsOfStudy +
                 '}';
