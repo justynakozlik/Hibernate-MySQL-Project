@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class GetApp {
 
     public static void main(String[] args) {
@@ -25,10 +27,16 @@ public class GetApp {
 
         currentSession.beginTransaction();
 
-        Course course = currentSession.get(Course.class, 1);
+        Course course1 = currentSession.get(Course.class, 1);
 
-        for (Student student : course.getStudents()){
+        for (Student student : course1.getStudents()) {
             System.out.println(student.getFirstName() + " " + student.getLastName());
+        }
+
+        Student student = currentSession.get(Student.class, 7);
+
+        for (Course course2 : student.getCourses()) {
+            System.out.println(course2.getName());
         }
 
         currentSession.getTransaction().commit();
