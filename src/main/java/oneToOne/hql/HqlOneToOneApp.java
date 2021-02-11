@@ -30,6 +30,7 @@ public class HqlOneToOneApp {
         String where = "select s.lastName from Student s join s.studentIndex si where si.number=11355";
         String avg = "select avg(s.age) from StudentIndex si join si.student s where si.number in (10559, 10437, 12235)";
         String numbers = "select si.number from StudentIndex si join si.student s where s.firstName like 'J%'";
+        String update = "update Student s set s.studentIndex=7 where s.idStudent=8";
 //
 //        Query query1 = currentSession.createQuery(select);
 //
@@ -39,6 +40,8 @@ public class HqlOneToOneApp {
 
         Query query4 = currentSession.createQuery(numbers);
 
+        Query query5 = currentSession.createQuery(update);
+
 
 //        List<Student> resultList = query1.getResultList();
 //
@@ -47,6 +50,8 @@ public class HqlOneToOneApp {
 //        Double avgResult = (Double) query3.getSingleResult();
 
         List<Integer> numberList = query4.getResultList();
+
+        query5.executeUpdate();
 
 //
 //        for(Student student : resultList){
