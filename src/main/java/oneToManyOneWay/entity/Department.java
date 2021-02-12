@@ -26,6 +26,7 @@ public class Department {
     private Set<FieldOfStudy> fieldsOfStudy;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_department")
     private Set<Laboratory> laboratories;
 
     public Department() {
